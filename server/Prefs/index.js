@@ -13,7 +13,7 @@ module.exports = async function (context, req) {
                     "Set-Cookie": `_gc_lang=${req.body.lang}; domain=${commonDomain}; path=/; secure ; HttpOnly`,
                     "Content-Type": "application/json"
                 },
-                "body": `{lang: \"${req.body.lang}\"}`
+                "body": `{\"lang\": \"${req.body.lang}\"}`
             }
         } else {
             context.res = {
@@ -32,7 +32,7 @@ module.exports = async function (context, req) {
                 "headers": {
                     "Content-Type": "application/json"
                 },
-                "body": `{lang: \"${matches[1]}\"}`
+                "body": `{\"lang\": \"${matches[1]}\"}`
             }
         } else {
             context.res = {
@@ -44,7 +44,7 @@ module.exports = async function (context, req) {
     }
     // Take care of CORS
         if ("origin" in req.headers
-        || /(?:canada|gc)\.ca$/.test(req.headers.origin))  { // GC domains only
+            && /(?:canada|gc)\.ca(?:\:\d+)?$/.test(req.headers.origin))  { // GC domains only
         context.res.headers["Access-Control-Allow-Credentials"] = "true";
         context.res.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, OPTIONS";
         context.res.headers["Access-Control-Allow-Origin"] = req.headers.origin;
