@@ -6,7 +6,7 @@ function getLanguage(callback) {
         xhrFields: {
             withCredentials: true
         },
-        success: function (data) { console.log(data); callback(data.lang) },
+        success: function (data) { callback(data.lang) },
         error: function (jqXHR, textStatus, errorThrown) { console.log(errorThrown); callback(textStatus)}
     });
 }
