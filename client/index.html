@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <head>
 	<meta charset="utf-8">
@@ -8,18 +9,19 @@
 <body>
 	<main role="main">
 		<h1>
-			The language cookie value is <em id=lang>Unset</em>.
+			The language cookie value is <em id=lang></em>.
 		</h1>
 		<p>
 			Change to:
-			<button onclick="setLanguage('eng'); getLanguage(displayLanguage)">English</button>
-			<button onclick="setLanguage('fra'); getLanguage(displayLanguage)">Francais</button>
+			<button onclick="setLanguage('eng', displayLanguage)">English</button>
+			<button onclick="setLanguage('fra', displayLanguage)">Francais</button>
 		</p>
 	</main>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 	<script src="./js/languageAPI.js"></script>
 	<script type="text/javascript">
 		function displayLanguage(language) {
+			if (language === "error") language = "Unset";
 			document.getElementById("lang").innerHTML = language;
 		}
 		$(document).ready(function () {

@@ -1,6 +1,6 @@
 function getLanguage(callback) {
     $.ajax({
-        url: 'https://server.fjgc-gccf.gc.ca/api/Prefs',
+        url: 'https://dev-lang-tbs.fjgc-gccf.gc.ca/v1/lang',
         type: 'GET',
         contentType: 'application/json',
         xhrFields: {
@@ -11,16 +11,17 @@ function getLanguage(callback) {
     });
 }
 
-function setLanguage(language) {
+function setLanguage(language, callback) {
     $.ajax({
-        url: 'https://server.fjgc-gccf.gc.ca/api/Prefs',
+        url: 'https://dev-lang-tbs.fjgc-gccf.gc.ca/v1/lang',
         type: 'PUT',
         datatype: 'application/json',
         contentType: 'application/json',
-        async: false,
-        data: `{lang: \"${language}\"}`,
+        data: JSON.stringify({lang: language}),
         xhrFields: {
             withCredentials: true
-        }
+        },
+        success: function (data) { callback(data.lang) },
+        error: function (jqXHR, textStatus, errorThrown) { console.log(errorThrown); callback(textStatus)}
     });
 }
