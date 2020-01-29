@@ -10,7 +10,7 @@ module.exports = async function (context, req) {
             context.res = {
                 "status": (req.method === "PUT" ? 200 : 201),
                 "headers": {
-                    "Set-Cookie": `_gc_lang=${req.body.lang}; domain=${commonDomain}; path=/; secure; HttpOnly`,
+                    "Set-Cookie": `_gc_lang=${req.body.lang}; domain=${commonDomain}; path=/; SameSite=None; secure; HttpOnly`,
                     "Content-Type": "application/json"
                 },
                 "body": `{\"lang\": \"${req.body.lang}\"}`
