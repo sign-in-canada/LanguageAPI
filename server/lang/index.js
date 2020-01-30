@@ -49,6 +49,6 @@ module.exports = async function (context, req) {
         context.res.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, OPTIONS";
         context.res.headers["Access-Control-Allow-Origin"] = req.headers.origin;
         context.res.headers["Access-Control-Allow-Headers"] = "Host, Accept, Origin, Content-Type, Content-Length, X-Requested-With";
-        context.res.headers["Access-Control-Max-Age"] = "0" /*"86400"*/;
+        context.res.headers["Access-Control-Max-Age"] = "1200";
     }
 };
