@@ -7,6 +7,15 @@ module.exports = async function (context, req) {
     let idp;
     let clf = req.query.clf;
 
+    if (! /^https:\/\/.*\.(id(\.alpha)?\.canada|id\.tbs-sct\.gc|catslab)\.ca\//.test(target)) {
+        // Invalid Target
+        context.res = {
+            status: 400,
+            body: null
+        }
+        return
+    }
+
     context.res = {
         status: 302,
         body: null
